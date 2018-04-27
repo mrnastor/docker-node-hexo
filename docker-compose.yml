@@ -1,0 +1,17 @@
+version: "2"
+services:
+  node:
+    image: docker-node-hexo
+    build:
+        context: .
+        dockerfile: Dockerfile
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+      - GIT_REPO_URL=https://github.com/mrnastor/hexosample.git
+    volumes:
+      - ./:/home/node/app
+    ports:
+      - "4000:4000"
+    entrypoint: "bash -x start.sh"
